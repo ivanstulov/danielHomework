@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,116 +11,114 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'tina turner'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  MyHomePage({Key key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Widget> data = List.generate(20, (index) {
-    return Padding(
-      padding: const EdgeInsets.all(3),
-      child: Card(
-        margin: const EdgeInsets.all(6),
-        color: Colors.cyan[300],
-        elevation: 5,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(30),
-            ),
-          ],
-        ),
-      ),
-    );
-  });
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
-          double _width = constraints.constrainWidth();
-          print(_width);
-          return _width < 500
-              ? SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Container(
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 100,
-                            width: 100,
-                            color: Colors.red,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Container(
-                            height: 100,
-                            width: 100,
-                            color: Colors.greenAccent,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Container(
-                            height: 100,
-                            width: 100,
-                            color: Colors.amber,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Container(
-                            height: 100,
-                            width: 100,
-                            color: Colors.pink,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Container(
-                            height: 100,
-                            width: 100,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Container(
-                            height: 100,
-                            width: 100,
-                            color: Colors.cyan,
-                          ),
-                        ),
-                      ],
-                    ),
+      body: SafeArea(child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+        double _width = constraints.constrainWidth();
+        print(_width);
+        return _width < 500
+            ? Container(
+                child: Row(
+                children: <Widget>[
+                  Expanded(
+                      child: GridView.count(
+                    primary: false,
+                    padding:
+                        const EdgeInsets.only(top: 20, left: 10, bottom: 650),
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    crossAxisCount: 1,
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        color: Colors.teal[100],
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        color: Colors.teal[200],
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        color: Colors.teal[300],
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        color: Colors.teal[400],
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        color: Colors.teal[500],
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        color: Colors.teal[600],
+                      ),
+                    ],
+                  ))
+                ],
+              ))
+            : ListView(
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(top: 20),
+                    height: 100,
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[100],
                   ),
-                )
-              : ListView.builder(
-                  itemCount: data.length,
-                  itemBuilder: (context, index) => data[index],
-                );
-        }),
-      ),
+                  Container(
+                    margin: EdgeInsets.only(top: 20),
+                    height: 100,
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[200],
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 20),
+                    height: 100,
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[300],
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 20),
+                    height: 100,
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[400],
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 20),
+                    height: 100,
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[500],
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 20),
+                    height: 100,
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[600],
+                  ),
+                ],
+              );
+      })),
     );
   }
 }

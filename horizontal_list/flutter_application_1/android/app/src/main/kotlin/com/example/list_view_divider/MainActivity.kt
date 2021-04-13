@@ -1,4 +1,4 @@
-package com.example.flutter_application_1
+package com.example.list_view_divider
 
 import io.flutter.embedding.android.FlutterActivity
 
